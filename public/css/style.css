@@ -1,0 +1,35 @@
+.wrap {
+	width:100%;
+	height: 899px;
+}
+
+.wrap.sunset{
+	background-image: url('/img/sunset.jpg');
+	background-repeat: no-repeat;
+}
+
+.wrap.summer-sky{
+	background-image: url('/img/summer-sky.jpg');
+	background-repeat: no-repeat;
+}
+
+.wrap.late-sunset{
+	background-image: url('/img/late-sunset.jpg');
+	background-repeat: no-repeat;
+}
+
+.jumb-weather-icon{
+	height: 100%;
+}
+
+.sunny-icon{
+    width: 65px;
+    height: 60px;
+    background: url('/img/free-weather-icons.png') -46px 205px;
+}
+
+.rainy-icon{
+    width: 65px;
+    height: 60px;
+    background: url('/img/free-weather-icons.png') -81px 138px;
+}
