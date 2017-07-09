@@ -1,0 +1,69 @@
+<div class="panel panel-green">
+	<div class="panel-heading">
+	    <h3 class="panel-title"><?php echo $this->translate('Sensor'). " #". $this->sensorKey ?></h3>
+	</div>
+	<div class="panel-body">
+			<?php if(isset( $this->sensorValue['description'])): ?>
+					<p>Description: <?php echo $this->sensorValue['description'] ?></p>
+			<?php endif; ?>	
+		<div id="graph-<?=  $this->sensorKey ?>"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+window.onload = function () {
+
+
+	var sensor_<?=  $this->sensorKey ?>_data = <?= json_encode($this->sensorValue['data']) ?>;
+
+	var chart_<?=  $this->sensorKey ?> = new CanvasJS.Chart("graph-<?=  $this->sensorKey ?>", {
+			zoomEnabled: true,
+			animationEnabled: true,
+			title: {
+				text: "<?=  $this->sensorKey ?>"
+			},
+			axisY2: {
+				valueFormatString: "0.0 C",
+				interval: 1,
+				interlacedColor: "#F5F5F5",
+				gridColor: "#D7D7D7",
+				tickColor: "#D7D7D7"
+			},
+			theme: "theme1",
+			toolTip: {
+				shared: true
+			},
+			legend: {
+				verticalAlign: "bottom",
+				horizontalAlign: "center",
+				fontSize: 15,
+				fontFamily: "Lucida Sans Unicode"
+			},
+			data: [
+			{
+				type: "line",
+				lineThickness: 3,
+				showInLegend: true,
+				name: "Temperature",
+				axisYType: "secondary",
+				dataPoints: sensor_<?=  $this->sensorKey ?>_data
+			
+			}],
+			legend: {
+				cursor: "pointer",
+				itemclick: function (e) {
+					if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+						e.dataSeries.visible = false;
+					}
+					else {
+						e.dataSeries.visible = true;
+					}
+					chart.render();
+				}
+			}
+		});
+		chart_<?=  $this->sensorKey ?>.render();
+
+	console.log(sensor_<?=  $this->sensorKey ?>_data);
+};
+</script>

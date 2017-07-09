@@ -3,7 +3,18 @@
  * This makes our life easier when dealing with paths. Everything is relative
  * to the application root now.
  */
+
+//var_dump(phpinfo()).die;
 chdir(dirname(__DIR__));
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
+
+ini_set('xdebug.default_enable', 0);
+ini_set('xdebug.show_exception_trace', 0);
 
 // Decline static file requests back to the PHP built-in webserver
 if (php_sapi_name() === 'cli-server') {

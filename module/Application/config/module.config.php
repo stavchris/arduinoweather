@@ -9,6 +9,9 @@
 
 namespace Application;
 
+use Application\Controller\IndexController;
+use Zend\ServiceManager\ServiceManager;
+
 return array(
     'router' => array(
         'routes' => array(
@@ -61,6 +64,8 @@ return array(
         ),
         'factories' => array(
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+            'sensorManager' => 'Application\Factory\SensorManagerFactory',
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
     ),
     'translator' => array(
@@ -75,8 +80,16 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => Controller\IndexController::class
         ),
+        'factories' => [
+            'Application\Controller\Index' => function ($serviceManager) {
+                return new IndexController(
+                    //$serviceManager->getServiceLocator()->get('sensorManager')
+                    $serviceManager->getServiceLocator()->get('config'),
+                    $serviceManager->getServiceLocator()->get('Zend\Db\Adapter\Adapter')
+                );
+            }
+        ],
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,

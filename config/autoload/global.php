@@ -12,5 +12,45 @@
  */
 
 return array(
-    // ...
+	'chstavrakis' => array(
+		'sensors' => array(
+			'sensordht11' => array(
+				'active' => true,
+				'description'=> 'description here...',
+				'options' => array(
+					'table_name' => 'sensordht11',
+					'order_by' => 'dht_id',
+					'order_flow' => 'desc',
+					'limit' => 70
+				),
+				
+			),
+			'sensor18b20' => array(
+				'active' => true,
+				'description'=> 'description here...',
+				'options' => array(
+					'table_name' => 'sensor18b20',
+					'order_by' => 'sen_id',
+					'order_flow' => 'desc',
+					'limit' => 70
+				),
+			),
+			'sensorlight' => array(
+				'active' => true,
+				'description'=> 'description here...',
+				'options' => array(
+					'table_name' => 'sensorlight',
+					'order_by' => 'sen_id',
+					'order_flow' => 'desc',
+					'limit' => 70
+				),
+			),
+		),
+	),
+	'db' => array(
+      'driver'         => 'Pdo',
+      'dsn'            => 'mysql:dbname=arduino;host=localhost',
+      'username'       => 'root',
+      'password'	   => '',
+   ),
 );
